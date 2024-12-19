@@ -1,0 +1,246 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Analysis of Algorithms
+%
+% Homework Assignment #3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Score Card and Answer Sheets
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[addpoints,11pt]{exam}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{clrscode3e}
+\usepackage{commath}
+\usepackage{units}
+\usepackage{enumitem}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{pdfpages}
+\usepackage{minted}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Begin Document
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagestyle{empty}
+
+
+\noindent{\large\bfseries Name:\underline{ Sakina Ghafoor }}\\
+\noindent{\large\bfseries COSC 40403 - Analysis of Algorithms: Homework 3}\\
+\noindent{\large\bfseries Due: 11:59:59 on September }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Score Card and Answer Sheets
+%
+% Comment out one-or-the-other to show or not-show the answers.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\SolutionEmphasis{\color{Blue}}
+\renewcommand{\solutiontitle}{\noindent\textbf{Answer:}\par\noindent}
+\printanswers
+%%\noprintanswers
+
+
+Some of the questions below require you to draw a heap or to trace through a heap algorithm on a specific array.  You may do so using \LaTeX packages that you can research and learn how to use.  You may also use a computer drawing program (i.e. PowerPoint, Visio, or similar), create your diagrams, and export them as a PDF file (I find that it also helps to trim the PDF file using graphics software.)  Then you can import the PDF file into your solution.\\
+
+For all problems, you must show your work to receive partial credit.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin Questions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{questions}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[5] For the following array of values, use computer software to draw this array as a heap.  Is this a max-heap?  Explain perhaps by drawing a picture of this heap.
+$$\left< 22, 17, 20, 8, 6, 3, 7, 2, 9, 7\right>$$
+\begin{solutionorbox}
+	No this is not a max-heap. This is because of the number 8, it is not larger than its child 9. Additionally, the value 6 is not larger than its child 7.  \\ \includegraphics[scale=0.7]{hw 3 q 1 aa.PNG}
+\end{solutionorbox}
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[10]
+Given the following heap, $A = \left< 99, 3, 10, 4, 5, 8, 7, 2, 1, 4\right>$, the value 3 is violating the max-heap property.  Illustrate (by use of listing the elements of array $A$) the operation of $\proc{Max-Heapify}{(A,3)}$ on the array.  Show how a heap element will trickle down the heap level-by-level.  Note: for this problem just list the array/heap values.  Do not show this as a tree.  I am looking for several rows of array values.   
+\begin{solutionorbox}
+	The $\proc{Max-Heapify}{(A,3)}$ starts with $A = \left< 99, 3, 10, 4, 5, 8, 7, 2, 1, 4\right>$. 
+ \\ Then, the function looks at value 3 and compares it with its children 4 and 5. It will use swap to move the largest of the three values to the parent position. $A = \left< 99, 5, 10, 4, 3, 8, 7, 2, 1, 4\right>$
+ \\ Then, the function moves to the children of 3 which is 4. The child is larger than the parent so the two values swap positions. $A = \left< 99, 5, 10, 4, 4, 8, 7, 2, 1, 3\right>$
+ \\ There is no more children left so the function terminates and we are left with a Max Heap. The value 3 no longer violates the max heap property. 
+ \\ We are left with the final array sequence: $A = \left< 99, 5, 10, 4, 4, 8, 7, 2, 1, 3\right>$
+ \\
+ \\$A = \left< 99, 3, 10, 4, 5, 8, 7, 2, 1, 4\right>$
+ \\$A = \left< 99, 5, 10, 4, 3, 8, 7, 2, 1, 4\right>$
+ \\$A = \left< 99, 5, 10, 4, 4, 8, 7, 2, 1, 3\right>$
+ 
+\end{solutionorbox}
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[10]
+Illustrate (by use of listing the elements of array $A$) the operation of $\proc{Build-Max-Heap}$ on the array $A = \left< 77, 48, 8, 8, 63, 31, 95, 53, 91, 52\right>$.  Each listing of $A$ should show the placement of an array element into its final position in the heap.
+\begin{solutionorbox}
+The array is of length 10 and we start at value n/2 or value 63 at index 5 in the array $A = \left< 77, 48, 8, 8, 63, 31, 95, 53, 91, 52\right>$. 
+ \\ Then, for the children of 63 we have just 52 and there is no need for a swap since the parent is the largest. $A = \left< 77, 48, 8, 8, 63, 31, 95, 53, 91, 52\right>$
+ \\ Then, the next value is the next index up which is value 8 at index 4. The children of value 8 would be 53 and 91. A swap is needed between 91 and 8. Now 8 at index 9 has no children so there is no need to go forward from here. $A = \left< 77, 48, 8, 91, 63, 31, 95, 53, 8, 52\right>$
+ \\ The next value is 8 at index 3. Its children are 31 and 95, so a swap is needed between 8 and 95. Now 8 at index 7 has no children so there is no need to go forward from here. $A = \left< 77, 48, 95, 91, 63, 31, 8, 53, 8, 52\right>$
+ \\ The next value is 48 at index 2 where the children are 91 and 63. A swap is needed between 48 and 91. $A = \left< 77, 91, 95, 48, 63, 31, 8, 53, 8, 52\right>$
+ \\ The children of 48 at index 4 are now 53 and 8, so a swap is needed between 53 and 48. Now 48 at index 8 has no children so no need to go forward from here. $A = \left< 77, 91, 95, 53, 63, 31, 8, 48, 8, 52\right>$
+ \\ The next value is 77 at index 1 where the children are 91 and 95. A swap is done between 95 and 77. The value 77 is now at index 3 with children 31 and 8, so no further action is needed here. $A = \left< 95, 91, 77, 53, 63, 31, 8, 48, 8, 52\right>$
+ \\ The operation on the array is now complete and the array follows the max heap property. 
+ \\
+ \\$A = \left< 77, 48, 8, 8, 63, 31, 95, 53, 91, 52\right>$
+ \\$A = \left< 77, 48, 8, 8, 63, 31, 95, 53, 91, 52\right>$
+ \\$A = \left< 77, 48, 8, 91, 63, 31, 95, 53, 8, 52\right>$
+ \\$A = \left< 77, 48, 95, 91, 63, 31, 8, 53, 8, 52\right>$
+ \\$A = \left< 77, 91, 95, 48, 63, 31, 8, 53, 8, 52\right>$
+ \\$A = \left< 77, 91, 95, 53, 63, 31, 8, 48, 8, 52\right>$
+ \\$A = \left< 95, 91, 77, 53, 63, 31, 8, 48, 8, 52\right>$
+\end{solutionorbox}
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[5]
+Consider an instance of an array in non-decreasing order and then passed to $\proc{Heapsort}$.  Does this instance have an effect on the running time?  Explain.  What if the array is in decreasing order?  Explain.
+
+\begin{solutionorbox}
+	The order of the array has no effect on running time, the running time of Heap Sort is always $O(nlogn)$. This is because each element in the array is passed through the algorithm to ensure that it follows the heap property. Specifically, in the Build Max Heap method of Heap Sort, each input is sorted based on the value of its children making it $O(n)$. To make the heap, each element in the array is sorted from the last to first element making the running time for this portion linear. Then, Heap Sort swaps the root and the last element for a removal that follows the heap property with the Max Heapify method running in $O(logn)$ time. This adds up to a running time of $O(nlogn)$. The algorithm always looks for the largest value to ensure that the parent is at the right position in regards to its children, the max heap property. A certain order doesn't make the Heap Sort algorithm sort fewer elements, the same amount of elements are sorted for both types of arrays for validation. 
+\end{solutionorbox}
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question [20]
+You are tasked with helping a botanist analyze the heights of trees in a forest. Given a list of tree heights (in feet), the botanist is interested in identifying the tallest trees. Specifically, they want to know the top $k$ tallest trees in the forest.  You may not sort the data by any means.  You must use the \mintinline{python}|heapq| python library.  Demonstrate your function works correctly using the two examples listed below.\\
+
+Write a function \mintinline{python}|top_k_tallest_trees(heights, k)| that takes the following inputs:
+\begin{itemize}
+	\item \texttt{heights}: A list of integers, where each integer represents the height of a tree in the forest.
+	\item \texttt{k}: An integer, representing the number of tallest trees to return.
+\end{itemize}
+
+The function should return a list of the $k$ tallest \emph{unique} heights.  If $k$ is larger than the number of unique tree heights, return all the heights in descending order.
+
+\textbf{Input:}
+\begin{itemize}
+	\item The list \texttt{heights} will contain between 1 and 10,000 integers.
+	\item Each integer in the list will be between 1 and 100 (representing tree heights in feet).
+	\item \texttt{k} will be a positive integer and will not exceed the number of heights in the list.
+\end{itemize}
+
+\textbf{Output:}
+\begin{itemize}
+	\item The function should return a list of integers representing the top $k$ unique tallest tree heights in descending order.
+\end{itemize}
+
+\textbf{Example 1:}
+\begin{minted}{python}
+	heights = [120, 130, 150, 160, 130, 140, 150, 170]
+	k = 3
+	top_k_tallest_trees(heights, k)  # Output: [170, 160, 150]
+\end{minted}
+
+\textbf{Example 2:}
+\begin{minted}{python}
+	heights = [120, 130, 120, 130]
+	k = 5
+	top_k_tallest_trees(heights, k)  # Output: [130, 120]
+\end{minted}
+
+\textbf{Explanation:}
+\begin{itemize}
+	\item In Example 1, the tallest unique tree heights are \mintinline{python}|[170, 160, 150, 140, 130, 120]|. The top 3 tallest heights are \mintinline{python}|[170, 160, 150]|.
+	\item In Example 2, there are only two unique tree heights \mintinline{python}|[130, 120]|. Since $k=5$ is larger than the number of unique heights, the function returns all the unique heights in descending order.
+\end{itemize}
+
+\textbf{Additional Requirements:}
+\begin{itemize}
+	\item You must implement the system using a heap (min-heap or max-heap).  Use the {\tt heapq} library.
+	\item You may not sort the data at any stage of your solution.
+	\item Submit your solution to this question as a python notebook (hw3q5.ipynb).  Upload this file to TCU Online.
+\end{itemize}
+\newpage
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question [20]
+You are tasked with building a basic emergency room triage system for a hospital. Patients arrive at the emergency room with varying levels of severity, and the hospital staff must treat patients in order of urgency. Patients with higher severity should be treated before those with lower severity, but patients with the same severity should be treated in the order they arrived.\\
+
+Write a python class \mintinline{python}|EmergencyRoom| that simulates the triage system. It should support the following operations:
+\begin{itemize}
+	\item \mintinline{python}|add_patient(name: str, severity: int)|: Adds a patient to the queue. Each patient has a unique name and a severity level. The severity is represented as an integer, where a higher number means more severe.
+	\item \mintinline{python}|treat_next() -> str|: Treats and returns the name of the patient with the highest severity. If multiple patients have the same severity, treat the one who arrived earlier.
+	\item \mintinline{python}|is_empty() -> bool|: Returns \mintinline{python}|True| if no patients are waiting to be treated, otherwise \mintinline{python}|False|.
+\end{itemize}
+
+\textbf{Input Constraints:}
+\begin{itemize}
+	\item The severity level is an integer between 1 and 100, with 100 being the most severe.
+	\item Up to 100,000 patients may arrive.
+	\item Each patient has a unique name of up to 50 characters.
+\end{itemize}
+
+\textbf{Output:}
+\begin{itemize}
+	\item The \mintinline{python}|treat_next| method should return the name of the next patient to be treated, according to the severity and arrival order.
+\end{itemize}
+
+\textbf{Example:}
+
+\begin{minted}{python}
+	# Example interaction
+	er = EmergencyRoom()
+	
+	er.add_patient("Alice", 5)
+	er.add_patient("Bob", 8)
+	er.add_patient("Charlie", 8)
+	er.add_patient("David", 3)
+	
+	print(er.treat_next())  # Output: "Bob" (highest severity)
+	print(er.treat_next())  # Output: "Charlie" (same severity as Bob, but arrived later)
+	print(er.is_empty())    # Output: False
+	print(er.treat_next())  # Output: "Alice"
+	print(er.treat_next())  # Output: "David"
+	print(er.is_empty())    # Output: True
+\end{minted}
+
+\textbf{Additional Requirements:}
+\begin{itemize}
+	\item You must implement the system using a \textbf{priority queue} (min-heap or max-heap).
+	\item The patients must be treated in order of severity, and if multiple patients have the same severity, they should be treated in the order they arrived.
+	\item You may assume no two patients have the same name.
+	\item Submit your solution to this question as a python notebook (hw3q6.ipynb).  Upload this file to TCU Online.
+\end{itemize}
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{questions}
+\end{document}
