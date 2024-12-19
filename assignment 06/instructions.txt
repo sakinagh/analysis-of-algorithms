@@ -1,0 +1,15 @@
+Homework 6.
+
+Implement 2 of the 3 programs listed below using Python3.
+25 points each.
+Submit your programs to TCU Online by the due date and time.
+This is an individual homework assignment.
+Do not use the assistance of GPT's or LLM's.
+Implement the algorithms provided in lecture.
+In all problems, read from standard input and write to standard output.
+
+Note:  No extra credit for completing all three problems!
+
+Rod Cutting Problem
+Matrix Chain Multiplication
+Longest Common Subsequence
